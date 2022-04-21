@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>折腾---美观Mac下的终端 - Fan&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="讲道理，Mac下的shell,嗯就是那个bash真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用iTerm2这个玩意代替他了，并且使用zsh代替了bash…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="折腾---美观Mac下的终端">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/07/21/My-Terminal/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
+<meta property="og:description" content="讲道理，Mac下的shell,嗯就是那个bash真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用iTerm2这个玩意代替他了，并且使用zsh代替了bash…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/07/21/My-Terminal/change_background.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/07/21/My-Terminal/terminal.png">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/07/21/My-Terminal/terminal_now.png">
+<meta property="article:published_time" content="2019-07-21T15:09:48.000Z">
+<meta property="article:modified_time" content="2019-11-15T08:18:14.591Z">
+<meta property="article:author" content="流岚">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2019/07/21/My-Terminal/change_background.png">
+
+
+
+
+
+<link rel="icon" href="/favicon_new.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#一、安装iTerm2代替shell">&nbsp;&nbsp;<b>一、安装iTerm2代替shell</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-官方下载地址：https-www-iterm2-com">&nbsp;&nbsp;1. 官方下载地址：https://www.iterm2.com/</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-替换背景图片">&nbsp;&nbsp;2. 替换背景图片</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#二、安装oh-my-zsh">&nbsp;&nbsp;<b>二、安装oh-my-zsh</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#三、主题选择">&nbsp;&nbsp;<b>三、主题选择</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#四、自动补全插件">&nbsp;&nbsp;<b>四、自动补全插件</b></a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            折腾---美观Mac下的终端
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2019-07-21T15:09:48.000Z" itemprop="datePublished">7月 21 2019</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Daily-Essays/">Daily Essays</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            7 分钟 读完 (约 1099 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p><del>讲道理</del>，Mac下的shell,嗯就是那个<strong>bash</strong>真的是太丑了，虽然可以修改背景色之类的还是觉得丑，所以就用<strong>iTerm2</strong>这个玩意代替他了，并且使用<strong>zsh</strong>代替了<strong>bash</strong>…<span id="more"></span>虽然<strong>bash</strong>的功能已经很强大，但对于以<del>懒惰</del>为美德的程序员来说，比如说我，bash的提示功能还不够强大，界面也不够酷炫，并非理想工具。而<strong>zsh</strong>的功能及其强大，只是配置过于复杂，起初只有极客在用，后来，有个穷极无聊的程序员可能实在是看不下去广大猿友使用单调的<strong>bash</strong>，于是他创建了一个名为<em><strong>oh-my-zsh</strong></em>的开源项目…</p>
+<p>自此，只需要简单的安装配置，我们也都可以用上<del>高档大气上档次，狂拽炫酷吊炸天的</del><em><strong>oh-my-zsh</strong></em>了。</p>
+<hr>
+<h3 id="一、安装iTerm2代替shell"><a href="#一、安装iTerm2代替shell" class="headerlink" title="一、安装iTerm2代替shell"></a>一、安装iTerm2代替shell</h3><h4 id="1-官方下载地址：https-www-iterm2-com"><a href="#1-官方下载地址：https-www-iterm2-com" class="headerlink" title="1. 官方下载地址：https://www.iterm2.com/"></a>1. <strong>官方下载地址：</strong><a target="_blank" rel="noopener" href="https://www.iterm2.com/">https://www.iterm2.com/</a></h4><p>   安装完成后，在/bin目录下会多出一个zsh的文件。Mac系统默认使用<strong>Bash</strong>作为终端，修改默认为<strong>zsh</strong>的命令如下：</p>
+   <figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="2-替换背景图片"><a href="#2-替换背景图片" class="headerlink" title="2. 替换背景图片"></a>2. <strong>替换背景图片</strong></h4><p>   Iterm2-&gt;Preferences-&gt;Profiles-&gt;window-&gt;Background image</p>
+<p>   <img src="/2019/07/21/My-Terminal/change_background.png" alt="change_background"></p>
+<hr>
+<h3 id="二、安装oh-my-zsh"><a href="#二、安装oh-my-zsh" class="headerlink" title="二、安装oh-my-zsh"></a>二、安装oh-my-zsh</h3><p><strong>命令 2种方式：</strong></p>
+   <figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>   或者</p>
+   <figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="hljs-string">"<span class="hljs-subst">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>   用第二种方式需要wget，如果没有wget请安装</p>
+   <figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install wget</span><br></pre></td></tr></tbody></table></figure>
+
+<p>   如果没有homebrew请自行百度安装这个强大的包管理工具，类似于centos或者ubuntu下的yum和apt-get</p>
+<p>   接下来只需要简单的配置，就可以享受oh-my-zsh的强大啦！</p>
+<hr>
+<h3 id="三、主题选择"><a href="#三、主题选择" class="headerlink" title="三、主题选择"></a>三、主题选择</h3><p>Oh-my-zsh有很多主题，具体请查看：<a target="_blank" rel="noopener" href="https://github.com/robbyrussell/oh-my-zsh/wiki/themes">主题列表</a></p>
+<p>我选择的主题是<code>ys</code></p>
+<p><img src="/2019/07/21/My-Terminal/terminal.png" alt="terminal"></p>
+<p><del>请忽视我正在安装的东西…</del></p>
+<p>想要修改主题，打开~/.zshrc文件修改一下ZSH_THEME变量即可</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<p>找到ZSH_THEME，将此变量值改为”ys”</p>
+<figure class="highlight c hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="hljs-string">"ys"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>最后更新修改后的配置文件</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h3 id="四、自动补全插件"><a href="#四、自动补全插件" class="headerlink" title="四、自动补全插件"></a>四、自动补全插件</h3><p>linux的命令有很多，想要全部记住是不可能的事情，<del>如果你是大佬当我没说</del>，这时候就需要我们的自动补全插件啦！<br>自动补全插件有很多种，一个是incr.zsh,下载此插件的命令为：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://mimosa-pudica.net/src/incr-0.2.zsh</span><br></pre></td></tr></tbody></table></figure>
+<p>这个插件确实很屌，但是存在一些bug，比如很卡顿！对，你可以明显感受到卡顿，有点卡顿或许还能忍，但是在使用命令<code>git clone http</code> 对，我下一个要敲 <code>:</code>    可就在我敲下它的一瞬间，终端竟然卡住了，住了，了…… 应该是提示功能太过强大导致的吧…<br>所以我用了另一个插件代替它的功能，但是就没有第一个插件功能这么牛逼了，他的基本作用就是根据历史输入指令的记录即时的提示，这么看起来也算不上自动补全插件咯，但是也是可以提高一点效率的呀！它就是Autosuggestion<br>首先切换目录</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">cd</span> ~/.oh-my-zsh/custom/plugins/</span><br></pre></td></tr></tbody></table></figure>
+<p>下载插件：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="hljs-built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></tbody></table></figure>
+<p>和修改主题需要修改配置文件一样，先打开配置文件~/.zshrc</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+<p>在最后添加一行，也就是把刚刚下载的插件的路径添加进去</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br></pre></td></tr></tbody></table></figure>
+<p>保存后执行更新配置文件命令</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.zshrc</span><br></pre></td></tr></tbody></table></figure>
+
+<p>到这里就结束啦，开始我们的<del>装逼</del>之旅吧嘻嘻嘻！<br>最后贴一张现在的终端界面吧哈哈！<br><img src="/2019/07/21/My-Terminal/terminal_now.png" alt="Terminal_now"><br>为什么这张图这么大呢，哈哈因为我喜欢吧终端常开着放在几个桌面的最左端，有需要的时候直接切换过去，是不是贼方便呢嘻嘻！！</p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2019/07/23/sublime-run/">Sublime中按ctrl+B调用python3运行</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/06/29/ipv6/">如何使用ipv6进行校园网免流</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2022 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

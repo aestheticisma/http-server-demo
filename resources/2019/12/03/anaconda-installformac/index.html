@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Mac下命令行版本的Anaconda安装及常用命令 - Fan&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="简单记录一下在Mac下Anaconda安装的过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac下命令行版本的Anaconda安装及常用命令">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/12/03/anaconda-installformac/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
+<meta property="og:description" content="简单记录一下在Mac下Anaconda安装的过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://aestheticisma.github.io/2019/12/03/anaconda-installformac/1.png">
+<meta property="article:published_time" content="2019-12-03T07:59:01.000Z">
+<meta property="article:modified_time" content="2020-03-19T07:21:56.491Z">
+<meta property="article:author" content="流岚">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://aestheticisma.github.io/2019/12/03/anaconda-installformac/1.png">
+
+
+
+
+
+<link rel="icon" href="/favicon_new.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-下载命令行版本安装包">&nbsp;&nbsp;<b>1. 下载命令行版本安装包</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#2-安装">&nbsp;&nbsp;<b>2. 安装</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#3-添加环境变量">&nbsp;&nbsp;<b>3.添加环境变量</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#4-关于卸载">&nbsp;&nbsp;<b>4.关于卸载</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#常用命令">&nbsp;&nbsp;<b>常用命令</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#环境管理">&nbsp;&nbsp;环境管理</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-查看当前系统下的环境">&nbsp;&nbsp;1. 查看当前系统下的环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-查看环境管理的全部命令操作">&nbsp;&nbsp;2. 查看环境管理的全部命令操作</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-创建环境">&nbsp;&nbsp;3. 创建环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-激活进入某个环境">&nbsp;&nbsp;4. 激活进入某个环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#5-退出环境">&nbsp;&nbsp;5. 退出环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#6-复制某个环境">&nbsp;&nbsp;6. 复制某个环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#7-删除某个环境">&nbsp;&nbsp;7. 删除某个环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#包管理">&nbsp;&nbsp;包管理</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-查看当前环境下已安装的包">&nbsp;&nbsp;1. 查看当前环境下已安装的包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-查看指定环境下的包">&nbsp;&nbsp;2. 查看指定环境下的包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#3-查找包">&nbsp;&nbsp;3. 查找包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#4-更新包">&nbsp;&nbsp;4. 更新包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#5-安装包">&nbsp;&nbsp;5. 安装包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#6-指定的安装环境">&nbsp;&nbsp;6. 指定的安装环境</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#7-安装anaconda发行版中的所有包">&nbsp;&nbsp;7. 安装anaconda发行版中的所有包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#8-卸载包">&nbsp;&nbsp;8. 卸载包</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#conda管理">&nbsp;&nbsp;conda管理</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#0-conda修改源">&nbsp;&nbsp;0. conda修改源</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#1-检查conda版本">&nbsp;&nbsp;1. 检查conda版本</a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#2-升级当前版本的conda">&nbsp;&nbsp;2. 升级当前版本的conda</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Mac下命令行版本的Anaconda安装及常用命令
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2019-12-03T07:59:01.000Z" itemprop="datePublished">12月 3 2019</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Daily-Essays/">Daily Essays</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            5 分钟 读完 (约 747 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>简单记录一下在Mac下Anaconda安装的过程<span id="more"></span></p>
+<p>一开始的我对Anaconda总是拒绝的，大概是因为自己固步自封不喜欢接受新事物(虽然这也不是新东西啊…)<br>在之前我一直都是用什么包直接<code>pip install xxx</code>完事。<br>直到很久之前某一天发现，为某个项目单独配置一个新的编码环境，各自独立是多么的幸福，用完也可以把这个环境全部删除，对本身的环境丝毫不影响，但无奈于我这个小废物一直很懒，直到今天才想起来安装一下Anaconda。</p>
+<h3 id="1-下载命令行版本安装包"><a href="#1-下载命令行版本安装包" class="headerlink" title="1. 下载命令行版本安装包"></a>1. 下载命令行版本安装包</h3><p><a target="_blank" rel="noopener" href="https://www.anaconda.com/download/#macos">官网地址</a></p>
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><p>cd到下载目录，输入以下命令直接安装即可</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.10-MacOSX-x86_64.sh</span><br></pre></td></tr></tbody></table></figure>
+<p>之后一直回车即可（有一步让你同意什么什么协议，输入<code>yes</code>即可）</p>
+<h3 id="3-添加环境变量"><a href="#3-添加环境变量" class="headerlink" title="3.添加环境变量"></a>3.添加环境变量</h3><p>编辑<code>.bash_profile</code><br>mac下可以用<code>open</code>命令</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open ~/.bash_profile</span><br></pre></td></tr></tbody></table></figure>
+<p>添加一行</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">export</span> PATH=<span class="hljs-string">"/Users/yourname/anaconda3/bin:<span class="hljs-variable">$PATH</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>上面的路径要输入你对应的路径名<br>刷新生效<code>source</code></p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></tbody></table></figure>
+<p>如果安装了<code>oh-my-zsh</code><br>还需要编辑 <code>.zshrc</code>文件，同样添加上面的一行，之后别忘了<code>source</code></p>
+<hr>
+<p>我们输入<code>python</code>即可进入<code>anaconda</code><br><img src="/2019/12/03/anaconda-installformac/1.png" alt="1.png"></p>
+<h3 id="4-关于卸载"><a href="#4-关于卸载" class="headerlink" title="4.关于卸载"></a>4.关于卸载</h3><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/anaconda3</span><br><span class="line">open ~/.bash_profile</span><br><span class="line"><span class="hljs-comment"># 删除路径</span></span><br><span class="line"></span><br><span class="line">rm -rf ~/.condarc ~/.conda ~/.continuum</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="环境管理"><a href="#环境管理" class="headerlink" title="环境管理"></a>环境管理</h4><h5 id="1-查看当前系统下的环境"><a href="#1-查看当前系统下的环境" class="headerlink" title="1. 查看当前系统下的环境"></a>1. 查看当前系统下的环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info -e</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="2-查看环境管理的全部命令操作"><a href="#2-查看环境管理的全部命令操作" class="headerlink" title="2. 查看环境管理的全部命令操作"></a>2. 查看环境管理的全部命令操作</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env -h</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="3-创建环境"><a href="#3-创建环境" class="headerlink" title="3. 创建环境"></a>3. 创建环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 创建新环境</span></span><br><span class="line">conda create -n env_name</span><br><span class="line"><span class="hljs-comment">#创建制定python版本的环境</span></span><br><span class="line">conda create -n env_name python=3.6</span><br><span class="line"><span class="hljs-comment">#创建包含某些包的环境</span></span><br><span class="line">conda create -n env_name numpy scipy</span><br><span class="line"><span class="hljs-comment">#创建指定python版本下包含某些包的环境</span></span><br><span class="line">conda create -n env_name python=3.6  numpy scipy</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="4-激活进入某个环境"><a href="#4-激活进入某个环境" class="headerlink" title="4. 激活进入某个环境"></a>4. 激活进入某个环境</h5><ul>
+<li>win<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate env_name</span><br></pre></td></tr></tbody></table></figure></li>
+<li>mac<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">source</span> activate env_name</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h5 id="5-退出环境"><a href="#5-退出环境" class="headerlink" title="5. 退出环境"></a>5. 退出环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="6-复制某个环境"><a href="#6-复制某个环境" class="headerlink" title="6. 复制某个环境"></a>6. 复制某个环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create new_env_name old_env_name</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="7-删除某个环境"><a href="#7-删除某个环境" class="headerlink" title="7. 删除某个环境"></a>7. 删除某个环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env remove -n env_name</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h4><h5 id="1-查看当前环境下已安装的包"><a href="#1-查看当前环境下已安装的包" class="headerlink" title="1. 查看当前环境下已安装的包"></a>1. 查看当前环境下已安装的包</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="2-查看指定环境下的包"><a href="#2-查看指定环境下的包" class="headerlink" title="2. 查看指定环境下的包"></a>2. 查看指定环境下的包</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list -n xxx</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="3-查找包"><a href="#3-查找包" class="headerlink" title="3. 查找包"></a>3. 查找包</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda search xxx</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="4-更新包"><a href="#4-更新包" class="headerlink" title="4. 更新包"></a>4. 更新包</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update xxx</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="5-安装包"><a href="#5-安装包" class="headerlink" title="5. 安装包"></a>5. 安装包</h5><figure class="highlight plaintext hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install xxx</span><br><span class="line">pip install xxx</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="6-指定的安装环境"><a href="#6-指定的安装环境" class="headerlink" title="6. 指定的安装环境"></a>6. 指定的安装环境</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -n env_name xxx</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="7-安装anaconda发行版中的所有包"><a href="#7-安装anaconda发行版中的所有包" class="headerlink" title="7. 安装anaconda发行版中的所有包"></a>7. 安装anaconda发行版中的所有包</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install anaconda</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="8-卸载包"><a href="#8-卸载包" class="headerlink" title="8. 卸载包"></a>8. 卸载包</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove xxx</span><br></pre></td></tr></tbody></table></figure>
+<h4 id="conda管理"><a href="#conda管理" class="headerlink" title="conda管理"></a>conda管理</h4><h5 id="0-conda修改源"><a href="#0-conda修改源" class="headerlink" title="0. conda修改源"></a>0. conda修改源</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">conda config --<span class="hljs-built_in">set</span> show_channel_urls yes</span><br></pre></td></tr></tbody></table></figure>
+<p>换回默认源</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --remove-key channels</span><br></pre></td></tr></tbody></table></figure>
+<p>在执行conda config 命令的时候会在当前用户目录下创建 .condarc  文件，可以查看更换源前后该文件内容的变化。</p>
+<h5 id="1-检查conda版本"><a href="#1-检查conda版本" class="headerlink" title="1. 检查conda版本"></a>1. 检查conda版本</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></tbody></table></figure>
+<h5 id="2-升级当前版本的conda"><a href="#2-升级当前版本的conda" class="headerlink" title="2. 升级当前版本的conda"></a>2. 升级当前版本的conda</h5><figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update conda</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2019/12/09/langrange-multi-approach/">拉格朗日乘数法</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/11/17/py-cre-douarr/">Python中如何定义二维数组</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2022 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

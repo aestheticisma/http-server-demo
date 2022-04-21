@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>朴素贝叶斯的三个常用模型 - Fan&#39;s Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="🤣废宅｜穷🤩｜想变胖💪">
+
+
+
+
+
+    <meta name="description" content="高斯、多项式、伯努利">
+<meta property="og:type" content="article">
+<meta property="og:title" content="朴素贝叶斯的三个常用模型">
+<meta property="og:url" content="https://aestheticisma.github.io/2019/10/14/navie-bayes/index.html">
+<meta property="og:site_name" content="Fan&#39;s Blog">
+<meta property="og:description" content="高斯、多项式、伯努利">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-10-14T08:42:05.000Z">
+<meta property="article:modified_time" content="2019-11-15T08:18:26.363Z">
+<meta property="article:author" content="流岚">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon_new.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                    
+                    流岚
+                    
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/friendly-link">FriendlyLink</a>
+            
+            <a class="navbar-item "
+               href="/aboutme">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="搜索" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
+                <a class="navbar-item" title="目录">
+                    <i class="fa fa-list"></i>
+                </a>
+                <div class="navbar-dropdown is-right">
+                    
+                    
+                    
+                    
+                    <a class="navbar-item" href="#朴素贝叶斯（naive-bayes）">&nbsp;&nbsp;<b>朴素贝叶斯（naive_bayes）</b></a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#高斯模型（GaussianNB）">&nbsp;&nbsp;<b>高斯模型（GaussianNB）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#sklearn实例：">&nbsp;&nbsp;sklearn实例：</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#多项式模型（MultinomialNB）">&nbsp;&nbsp;<b>多项式模型（MultinomialNB）</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#sklearn实例：-1">&nbsp;&nbsp;sklearn实例：</a>
+                    
+                    
+                    <hr class="navbar-divider">
+                    
+                    
+                    <a class="navbar-item" href="#伯努利模型">&nbsp;&nbsp;<b>伯努利模型</b></a>
+                    
+                    
+                    
+                    <a class="navbar-item" href="#sklearn实例：-2">&nbsp;&nbsp;sklearn实例：</a>
+                    
+                </div>
+            </div>
+            
+            
+            <a class="navbar-item" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            朴素贝叶斯的三个常用模型
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2019-10-14T08:42:05.000Z" itemprop="datePublished">10月 14 2019</time>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/Daily-Essays/">Daily Essays</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 分钟 读完 (约 1272 字)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>高斯、多项式、伯努利<span id="more"></span></p>
+<h3 id="朴素贝叶斯（naive-bayes）"><a href="#朴素贝叶斯（naive-bayes）" class="headerlink" title="朴素贝叶斯（naive_bayes）"></a>朴素贝叶斯（naive_bayes）</h3><p>若一个样本有n个特征，分别用$x_{1},x_{2},…,x_{n}$表示，将其划分到类yk的可能性$P(y_{k}|x_{1},x_{2},…,x_{n})$为：<br>$P(y_{k}|x_{1},x_{2},…,x_{n}) = P(y_{k})\prod_{i=1}^{n}P(x_{i}|y_{k})$</p>
+<p>上式中等号右侧的各个值可以通过训练得到。根据上面的公式可以求的某个数据属于各个分类的可能性（这些可能性之和不一定是1），该数据应该属于具有最大可能性的分类中。<br>一般来说，如果一个样本没有特征xi，那么P(xi|yk)将不参与计算。不过下面的伯努利模型除外。</p>
+<p>以上是朴素贝叶斯的最基本的内容。</p>
+<hr>
+<h3 id="高斯模型（GaussianNB）"><a href="#高斯模型（GaussianNB）" class="headerlink" title="高斯模型（GaussianNB）"></a>高斯模型（GaussianNB）</h3><p>有些特征可能是连续型变量，比如说人的身高，物体的长度，这些特征可以转换成离散型的值，比如如果身高在160cm以下，特征值为1；在160cm和170cm之间，特征值为2；在170cm之上，特征值为3。也可以这样转换，将身高转换为3个特征，分别是f1、f2、f3，如果身高是160cm以下，这三个特征的值分别是1、0、0，若身高在170cm之上，这三个特征的值分别是0、0、1。不过这些方式都不够细腻，高斯模型可以解决这个问题。高斯模型假设这些一个特征的所有属于某个类别的观测值符合高斯分布，也就是<br>$P(x_{i}|y_{k}) = \frac{1}{\sqrt{2\pi\sigma_{y_{k}}^{2}}}exp( -\frac{(x_{i}-\mu_{y_{k}})^2}  {2\sigma_{y_{k}}^{2}}   )$</p>
+<h4 id="sklearn实例："><a href="#sklearn实例：" class="headerlink" title="sklearn实例："></a>sklearn实例：</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> datasets</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> GaussianNB</span><br><span class="line"></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line"><span class="hljs-comment">#四个特征的名字</span></span><br><span class="line"><span class="hljs-built_in">print</span>(iris.feature_names) </span><br><span class="line">clf = GaussianNB()</span><br><span class="line">clf.fit(iris.data,iris.target)</span><br><span class="line"><span class="hljs-comment">#第0个数据的标签及其预测</span></span><br><span class="line"><span class="hljs-built_in">print</span>(iris.target[<span class="hljs-number">0</span>])</span><br><span class="line"><span class="hljs-built_in">print</span>(clf.predict(iris.data[<span class="hljs-number">0</span>].reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>)))</span><br><span class="line"><span class="hljs-comment">#第149个数据的标签及其预测</span></span><br><span class="line"><span class="hljs-built_in">print</span>(iris.target[<span class="hljs-number">149</span>])</span><br><span class="line"><span class="hljs-built_in">print</span>(clf.predict(iris.data[<span class="hljs-number">149</span>].reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>)))</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="hljs-string">'sepal length (cm)'</span>, <span class="hljs-string">'sepal width (cm)'</span>, <span class="hljs-string">'petal length (cm)'</span>, <span class="hljs-string">'petal width (cm)'</span>]</span><br><span class="line">0</span><br><span class="line">[0]</span><br><span class="line">2</span><br><span class="line">[2]</span><br><span class="line">[Finished <span class="hljs-keyword">in</span> 0.9s]</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="多项式模型（MultinomialNB）"><a href="#多项式模型（MultinomialNB）" class="headerlink" title="多项式模型（MultinomialNB）"></a>多项式模型（MultinomialNB）</h3><p>该模型常用于文本分类，特征是单词，值是单词的出现次数。<br>$P(x_{i}|y_{k}) = \frac{N_{y_{k}x_{i}}+\alpha}{N_{y_{k}}+\alpha n}$<br>其中，$N_{y_{k}x_{i}}$是类别$y_{k}$下特征$x_{i}$出现的次数；$N_{y_{k}}$是类别$y_{k}$下所有特征出现的总次数。对应到文本分类里，如果单词<code>word</code>在一篇分类为<code>label1</code>的文档中出现了5次，那么$N_{label1,word}$的值会增加5。如果是去除了重复单词的，那么$N_{label1,word}$的值会增加1。$n$是特征的数量，在文本分类中就是去重后的所有单词的数量。$α$的取值范围是[0,1]，比较常见的是取值为1。</p>
+<p>待预测样本中的特征xi在训练时可能没有出现，如果没有出现，则$N_{ykxi}$值为0，如果直接拿来计算该样本属于某个分类的概率，结果都将是0。在分子中加入$α$，在分母中加入$αn$可以解决这个问题。</p>
+<h4 id="sklearn实例：-1"><a href="#sklearn实例：-1" class="headerlink" title="sklearn实例："></a>sklearn实例：</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> MultinomialNB</span><br><span class="line"><span class="hljs-comment">#随机生成6*100个小于5大于等于0的数</span></span><br><span class="line">X = np.random.randint(<span class="hljs-number">5</span>, size=(<span class="hljs-number">6</span>,<span class="hljs-number">100</span>))</span><br><span class="line">Y = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>])</span><br><span class="line">clf = MultinomialNB()</span><br><span class="line">clf.fit(X, Y)</span><br><span class="line"><span class="hljs-built_in">print</span>(clf.predict(X[<span class="hljs-number">2</span>].reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>)))</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[3]</span><br><span class="line">[Finished <span class="hljs-keyword">in</span> 0.5s]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><em><strong>Tips</strong></em>: 多项式模型在训练一个数据集结束后可以继续训练其他数据集而无需将两个数据集放在一起进行训练。在sklearn中，MultinomialNB()类的partial_fit()方法可以进行这种训练。这种方式特别适合于训练集大到内存无法一次性放入的情况。</p>
+<p>在第一次调用<code>partial_fit()</code>时需要给出所有的分类标号。</p>
+<figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> MultinomialNB</span><br><span class="line">clf = MultinomialNB()</span><br><span class="line"><span class="hljs-comment">#在第一次调用时需要给出所有的分类标号</span></span><br><span class="line">clf.partial_fit(np.array([<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]).reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>), np.array([<span class="hljs-string">'aa'</span>]), [<span class="hljs-string">'aa'</span>,<span class="hljs-string">'bb'</span>])</span><br><span class="line">clf.partial_fit(np.array([<span class="hljs-number">6</span>,<span class="hljs-number">1</span>]).reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>), np.array([<span class="hljs-string">'bb'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">print</span>(clf.predict(np.array([<span class="hljs-number">9</span>,<span class="hljs-number">1</span>]).reshape(<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>)))</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="hljs-string">'bb'</span>]</span><br><span class="line">[Finished <span class="hljs-keyword">in</span> 0.5s]</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="伯努利模型"><a href="#伯努利模型" class="headerlink" title="伯努利模型"></a>伯努利模型</h3><p>在伯努利模型中，对于一个样本来说，其特征用的是全局的特征。每个特征的取值是布尔型的，也就是true和false，或者1和0。在文本分类中，就是一个特征有没有在一个文档中出现。</p>
+<p>如果特征值$x_{i}$为1，那么<br>$P(x_{i}|y_{k}) = P(x_{i}=1|y_{k})$<br>如果特征值$x_{i}$为0，那么<br>$P(x_{i}|y_{k}) = 1-P(x_{i}=1|y_{k})$</p>
+<p>这意味着，“没有某个特征”也是一个特征。</p>
+<h4 id="sklearn实例：-2"><a href="#sklearn实例：-2" class="headerlink" title="sklearn实例："></a>sklearn实例：</h4><figure class="highlight python hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.naive_bayes <span class="hljs-keyword">import</span> BernoulliNB</span><br><span class="line">X = np.random.randint(<span class="hljs-number">2</span>, size=(<span class="hljs-number">6</span>, <span class="hljs-number">100</span>))</span><br><span class="line">Y = np.array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])</span><br><span class="line">clf = BernoulliNB()</span><br><span class="line">clf.fit(X, Y)</span><br><span class="line"><span class="hljs-built_in">print</span>(clf.predict(X[<span class="hljs-number">2</span>].reshape(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>)))</span><br></pre></td></tr></tbody></table></figure>
+<p>运行结果：</p>
+<figure class="highlight bash hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[3]</span><br><span class="line">[Finished <span class="hljs-keyword">in</span> 1.0s]</span><br></pre></td></tr></tbody></table></figure>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2019/11/13/leetcode-day1/">LeetCode DAY 1 (1-3)</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2019/09/18/hacker-4/">XSS结合Beef的社会工程学窃取密码实验</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2019-2022 流岚&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" target="_blank" rel="noopener" href="https://github.com/aestheticisma">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("zh-CN");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="站内搜索" />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
